@@ -17,3 +17,47 @@ const slides = [
 	}
 ]
 
+const arrowRight = document.querySelector('.arrow_right');
+const arrowLeft = document.querySelector('.arrow_left');
+const img = document.querySelector('.banner-img');
+const tagLine = document.querySelector('.tagLine');
+const dotSelected = document.querySelector('.dot_selected');
+let slideIndex = 1;
+
+showSlides(slideIndex);
+
+function plusSlides(n) {
+showSlides(slideIndex += n);}
+
+function showSlides(n) {
+
+
+	if(n > slides.length) { slideIndex = 1 }
+	if (n < 1) { slideIndex = slides.length}
+
+	for (let i = 0; i < slides.length; i++) {
+		slides[i].style.display = "none";
+	}
+
+
+	slides[slideIndex - 1].style.display = 'block';
+}
+
+arrowRight.addEventListener('click',() => {
+console.log('flèche de droite')
+showSlides
+}),
+
+arrowLeft.addEventListener('click',() => {
+console.log('flèche de gauche')
+showSlides
+})
+
+
+
+
+
+  
+  
+  
+  
