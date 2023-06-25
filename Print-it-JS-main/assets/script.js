@@ -15,49 +15,77 @@ const slides = [
 		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
-]
+];
 
 const arrowRight = document.querySelector('.arrow_right');
 const arrowLeft = document.querySelector('.arrow_left');
 const img = document.querySelector('.banner-img');
-const tagLine = document.querySelector('.tagLine');
-const dotSelected = document.querySelector('.dot_selected');
-let slideIndex = 1;
+const tagLine = document.querySelector('#tagLine');
+const dots = document.querySelector('.dots');
 
+
+// visualiser le premier element du tableau dans la banniere et afficher les points vide
+let slideIndex = 0;
 showSlides(slideIndex);
+createdots();
+updatedots(slideIndex);
 
-function plusSlides(n) {
-showSlides(slideIndex += n);}
+//afficher l'image et le tagLine de la position sur le dom ( img et p )
+function showSlides( position ) {
 
-function showSlides(n) {
-
-
-	if(n > slides.length) { slideIndex = 1 }
-	if (n < 1) { slideIndex = slides.length}
-
-	for (let i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
-	}
-
-
-	slides[slideIndex - 1].style.display = 'block';
+	img.src = "./assets/images/slideshow/"+slides[position].image;
+	tagLine.innerHTML =slides[position].tagLine;
 }
-
+//incrementation de la position puis actualiser l'affichage
 arrowRight.addEventListener('click',() => {
-console.log('flèche de droite')
-showSlides
-}),
+	console.log('flèche de droite', slideIndex);
+	if(slideIndex == slides.length-1)
+	{
+		slideIndex = 0;
+	}
+	else
+	 	slideIndex++;
+	
+	showSlides(slideIndex);
+	updatedots(slideIndex);
+});
 
+//decrementation de la position puis actualiser l'affichage
 arrowLeft.addEventListener('click',() => {
-console.log('flèche de gauche')
-showSlides
-})
+	console.log('flèche de gauche', slideIndex);
+	if(slideIndex == 0)
+	{
+		slideIndex = slides.length-1;
+	}
+	else
+	 	slideIndex--;
+	
+	showSlides(slideIndex);
+	updatedots(slideIndex);
+});
 
+function updatedots(position){
+	//recuperer le contenu de la div dots
+	const listDots = document.querySelectorAll(".dot");
+console.log(position, listDots);
+for (let index = 0; index < listDots.length; index++) {
+	const div = listDots[index];
+	//update du tableau dots 
+	if(index!= position)
+	div.setAttribute("class", "dot");
+	else 
+	div.setAttribute("class", "dot dot_selected");
+}
+	
+}
+	
 
-
-
-
-  
-  
-  
-  
+function createdots(){
+	
+	for (let index = 0; index < slides.length; index++) {
+		
+		const div = document.createElement("div");
+		div.setAttribute("class", "dot");
+			dots.appendChild(div);
+		}
+	}
