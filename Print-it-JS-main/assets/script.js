@@ -23,7 +23,6 @@ const img = document.querySelector('.banner-img');
 const tagLine = document.querySelector('#tagLine');
 const dots = document.querySelector('.dots');
 
-
 // visualiser le premier element du tableau dans la banniere et afficher les points vide
 let slideIndex = 0;
 showSlides(slideIndex);
@@ -39,7 +38,7 @@ function showSlides( position ) {
 //incrementation de la position puis actualiser l'affichage
 arrowRight.addEventListener('click',() => {
 	console.log('flèche de droite', slideIndex);
-	if(slideIndex == slides.length-1)
+	if(slideIndex == slides.length-1) 
 	{
 		slideIndex = 0;
 	}
@@ -60,6 +59,7 @@ arrowLeft.addEventListener('click',() => {
 	else
 	 	slideIndex--;
 	
+		// met à jour les données slideIndex
 	showSlides(slideIndex);
 	updatedots(slideIndex);
 });
@@ -79,7 +79,7 @@ for (let index = 0; index < listDots.length; index++) {
 	
 }
 	
-
+// création d'un dot par nombre d'élément dans slides
 function createdots(){
 	
 	for (let index = 0; index < slides.length; index++) {
